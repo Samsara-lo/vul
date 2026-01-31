@@ -1,9 +1,9 @@
 {
-    "name": "vul-test",
-    "version": "1.0.0",
-    "scripts": {
-      "test": "node exploit.js",
-      "postinstall": "node exploit.js",
-      "build": "node exploit.js"
-    }
+  "name": "vul-test",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node exploit.js",
+    "postinstall": "node exploit.js",
+    "build": "node exploit.js"
   }
+}
