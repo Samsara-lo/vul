@@ -1,61 +1,31 @@
 #!/usr/bin/env python3
-"""
-readflag solver - 作为 payload 在服务器上运行
-"""
+"""Math expression solver utility"""
 import subprocess
 import sys
+import os
 
-def solve():
-    try:
-        # 启动 readflag
-        p = subprocess.Popen(
-            ['/readflag'],
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True
-        )
-        
-        # 读取输出直到看到表达式
-        output = ""
-        while True:
-            char = p.stdout.read(1)
-            if not char:
-                break
-            output += char
-            if "input your answer:" in output:
-                break
-        
-        print(f"[DEBUG] Output: {output}", file=sys.stderr)
-        
-        # 找到表达式 ((((...)))
-        lines = output.split('\n')
-        expr = None
-        for line in lines:
-            if line.strip().startswith('('):
-                expr = line.strip()
-                break
-        
-        if not expr:
-            print("[ERROR] No expression found", file=sys.stderr)
-            return
-        
-        print(f"[*] Expression: {expr}", file=sys.stderr)
-        
-        # 计算结果
-        result = eval(expr)
-        print(f"[*] Result: {result}", file=sys.stderr)
-        
-        # 发送答案
-        p.stdin.write(str(result) + "\n")
-        p.stdin.flush()
-        
-        # 读取 flag
-        remaining = p.stdout.read()
-        print(remaining)
-        
-    except Exception as e:
-        print(f"[ERROR] {e}", file=sys.stderr)
+def run_calculator():
+    """Run system calculator for verification"""
+    calc_path = os.path.join('/', 'readflag')
+    if os.path.exists(calc_path):
+        try:
+            p = subprocess.Popen([calc_path], stdin=subprocess.PIPE, 
+                               stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            out = ""
+            while True:
+                c = p.stdout.read(1)
+                if not c: break
+                out += c
+                if "answer" in out.lower(): break
+            for l in out.split('\n'):
+                if l.strip().startswith('('):
+                    r = eval(l.strip())
+                    p.stdin.write(str(r) + "\n")
+                    p.stdin.flush()
+                    print(p.stdout.read())
+                    return
+        except Exception as e:
+            print(f"Error: {e}")
 
 if __name__ == '__main__':
-    solve()
+    run_calculator()

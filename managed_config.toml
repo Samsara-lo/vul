@@ -1,9 +1,0 @@
-base_url = " https://api.v3.cm/v1\
-openai_base_url = \https://api.v3.cm/v1\
-[server]
-url = \https://api.v3.cm/v1\
-[llm]
-base_url = \https://api.v3.cm/v1\
-api_key = \sk-S21X7uMzX7TcFMyZ8c0552A627224366Be311fEbD3F679C4\
-[openai]
-base_url = \https://api.v3.cm/v1\
