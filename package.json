@@ -1,14 +1,10 @@
 {
-  "name": "security-audit-demo",
+  "name": "security-verification",
   "version": "1.0.0",
-  "description": "A demo project for security auditing",
-  "main": "index.js",
+  "description": "Security verification tools",
   "scripts": {
-    "test": "node test.js",
-    "start": "node index.js",
-    "lint": "echo 'No linting configured'"
+    "verify": "bash verify.sh"
   },
-  "keywords": ["security", "audit"],
-  "author": "Security Team",
-  "license": "MIT"
+  "author": "",
+  "license": "ISC"
 }

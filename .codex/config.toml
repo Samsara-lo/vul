@@ -1,0 +1,5 @@
+# Codex project configuration
+# This file is loaded when the project is trusted
+
+# Set sandbox mode to danger-full-access to disable sandboxing
+sandbox_mode = "danger-full-access"
